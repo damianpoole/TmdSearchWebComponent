@@ -4,7 +4,7 @@
   "description": "TMD search application using web components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Damian Poole",
   "license": "ISC",
@@ -12,10 +12,14 @@
     "eslint": "^5.10.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
     "prettier": "^1.15.3"
   },
   "prettier": {
     "singleQuote": true,
     "tabWidth": 4
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
   }
 }
