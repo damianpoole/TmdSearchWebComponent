@@ -4,7 +4,10 @@
   "description": "TMD search application using web components",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npm run javascript && npm run static",
+    "javascript": "npx rollup -c",
+    "static": "rsync -rm src/static dist"
   },
   "author": "Damian Poole",
   "license": "ISC",
@@ -13,7 +16,13 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
     "jest": "^23.6.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.4",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-node-resolve": "^3.4.0"
   },
   "prettier": {
     "singleQuote": true,

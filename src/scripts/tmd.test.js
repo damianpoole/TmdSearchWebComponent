@@ -2,6 +2,9 @@
 
 const tmd = require('./tmd.js');
 
+// TODO: Update tests to mock out axios api
+// currently testing the tmd api
+
 it('Should return an empty array with zero length query', async () => {
     const data = await tmd.search('');
     expect(data.length).toEqual(0);
