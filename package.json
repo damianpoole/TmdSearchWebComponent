@@ -1,34 +1,36 @@
 {
-  "name": "tmdsearchwebcomponent",
-  "version": "1.0.0",
-  "description": "TMD search application using web components",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "build": "npm run javascript && npm run static",
-    "javascript": "npx rollup -c",
-    "static": "rsync -rm src/static dist"
-  },
-  "author": "Damian Poole",
-  "license": "ISC",
-  "devDependencies": {
-    "eslint": "^5.10.0",
+  "name": "tmd-search",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "jest": "^23.6.0",
     "prettier": "^1.15.3",
-    "rimraf": "^2.6.2",
-    "rollup": "^0.67.4",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.2",
+    "react-test-renderer": "^16.7.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "prettier": {
     "singleQuote": true,
     "tabWidth": 4
   },
-  "dependencies": {
-    "axios": "^0.18.0"
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "eslint-plugin-react": "^7.12.0"
   }
 }
