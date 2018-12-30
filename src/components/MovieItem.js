@@ -21,13 +21,18 @@ class MovieItem extends Component {
         const showDetails = this.state.showDetails;
 
         return (
-            <div className={showDetails ? 'movieItem active' : 'movieItem'}>
-                <h2>{this.props.title}</h2>
-                <button onClick={this.toggleDetails}>
-                    {showDetails ? 'Collapse' : 'Expand'}
-                </button>
+            <div
+                className={showDetails ? 'movieItem active' : 'movieItem'}
+                onClick={this.toggleDetails}
+            >
+                <img
+                    src={`https://image.tmdb.org/t/p/w200${
+                        this.props.imageUrl
+                    }`}
+                />
                 {showDetails && (
                     <div className="details">
+                        <h2>{this.props.title}</h2>
                         <p className="releaseDate">{this.props.releaseDate}</p>
                         <p className="overview">{this.props.overview}</p>
                     </div>

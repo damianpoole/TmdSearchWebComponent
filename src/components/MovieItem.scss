@@ -1,13 +1,32 @@
 .movieItem {
-    background-color: darkslateblue;
-    border: 1px solid slateblue;
-    border-radius: 5px;
+    background-color: white;
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,.2);
+    border-radius: 3px;
+    margin: 5px 0;
+    padding: 3px;
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .details {
+        display: none;
+    }
     
     &.active {
         background: slateblue;
         border-color: blue;
-        grid-column: span 2;
-        grid-row: span 2;
+
+        img {
+            display: none;
+        }
+
+        .details {
+            display: block;
+            max-width: 200px;
+        }
     }
 
     h2 {

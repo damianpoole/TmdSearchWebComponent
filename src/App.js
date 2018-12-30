@@ -37,8 +37,12 @@ class App extends Component {
     }
 
     updateMovies(data) {
+        const movies = data
+            .filter(x => x.release_date !== '')
+            .filter(x => x.poster_path !== null);
+
         this.setState((previousState, currentProps) => {
-            return { movies: data, isLoading: false };
+            return { movies, isLoading: false };
         });
     }
 
@@ -46,9 +50,11 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="search">
+                    <label for="search">Search by movie title</label>
                     <input
+                        id="search"
                         onKeyDown={this.search}
-                        placeholder="Search by movie title..."
+                        placeholder="Movie title..."
                     />
                 </div>
 
@@ -59,6 +65,7 @@ class App extends Component {
                             title={movie.title}
                             overview={movie.overview}
                             releaseDate={movie.release_date}
+                            imageUrl={movie.poster_path}
                         />
                     ))}
                 </div>

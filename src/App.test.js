@@ -11,9 +11,14 @@ describe('Search input', () => {
     let el, spy, input;
 
     beforeEach(() => {
+        const movie = {
+            poster_path: 'image.jpg',
+            release_date: '1st January 2018'
+        };
+
         spy = jest.spyOn(tmd, 'search').mockImplementation(() => {
             return new Promise((resolve, reject) => {
-                resolve([{ id: 1 }, { id: 2 }]);
+                resolve([{ ...movie, id: 1 }, { ...movie, id: 2 }]);
             });
         });
         el = shallow(<App />);
