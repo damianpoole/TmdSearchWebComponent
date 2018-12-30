@@ -1,42 +1,58 @@
 import React, { Component } from 'react';
 import './MovieItem.scss';
+import Modal from './Modal';
 
 class MovieItem extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            showDetails: false
+            show: false
         };
 
-        this.toggleDetails = this.toggleDetails.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
-    toggleDetails() {
-        this.setState({
-            showDetails: !this.state.showDetails
-        });
+    showModal() {
+        if (!this.state.show) {
+            this.setState({
+                show: true
+            });
+        }
+    }
+
+    hideModal() {
+        this.setState((state, props) => ({
+            show: false
+        }));
     }
 
     render() {
-        const showDetails = this.state.showDetails;
+        const backgroundImage = this.props.backgroundImage;
 
         return (
-            <div
-                className={showDetails ? 'movieItem active' : 'movieItem'}
-                onClick={this.toggleDetails}
-            >
+            <div className="movieItem" onClick={this.showModal}>
                 <img
                     src={`https://image.tmdb.org/t/p/w200${
                         this.props.imageUrl
                     }`}
                 />
-                {showDetails && (
+                <Modal show={this.state.show} handleClose={this.hideModal}>
                     <div className="details">
                         <h2>{this.props.title}</h2>
-                        <p className="releaseDate">{this.props.releaseDate}</p>
+                        <p className="releaseDate">
+                            Released on {this.props.releaseDate}
+                        </p>
+                        {backgroundImage && (
+                            <img
+                                align="right"
+                                src={`https://image.tmdb.org/t/p/w400${backgroundImage}`}
+                            />
+                        )}
                         <p className="overview">{this.props.overview}</p>
                     </div>
-                )}
+                </Modal>
             </div>
         );
     }

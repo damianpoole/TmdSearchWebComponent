@@ -50,7 +50,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="search">
-                    <label for="search">Search by movie title</label>
+                    <label htmlFor="search">Search by movie title</label>
                     <input
                         id="search"
                         onKeyDown={this.search}
@@ -66,6 +66,7 @@ class App extends Component {
                             overview={movie.overview}
                             releaseDate={movie.release_date}
                             imageUrl={movie.poster_path}
+                            backgroundImage={movie.backdrop_path}
                         />
                     ))}
                 </div>

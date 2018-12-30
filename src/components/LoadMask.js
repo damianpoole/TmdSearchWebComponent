@@ -11,7 +11,7 @@ class LoadMask extends Component {
 
         return (
             <div className={classes}>
-                <div class="spinner" />
+                <div className="spinner" />
             </div>
         );
     }

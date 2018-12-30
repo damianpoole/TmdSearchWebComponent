@@ -6,31 +6,20 @@
     margin: 5px 0;
     padding: 3px;
 
+    &:hover {
+        background-color: slategrey;
+    }
+
     img {
         height: 100%;
         width: 100%;
     }
 
-    .details {
-        display: none;
-    }
-    
-    &.active {
-        background: slateblue;
-        border-color: blue;
-
-        img {
-            display: none;
-        }
-
-        .details {
-            display: block;
-            max-width: 200px;
-        }
-    }
-
     h2 {
-        font-size: 2em;
-        color: white;
+        font-size: 1.2em;
+    }
+
+    .releaseDate {
+        font-size: 0.8em;
     }
 }
