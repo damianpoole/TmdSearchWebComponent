@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import * as tmd from './tmd';
 import App from './App';
 
@@ -21,7 +21,7 @@ describe('Search input', () => {
                 resolve([{ ...movie, id: 1 }, { ...movie, id: 2 }]);
             });
         });
-        el = shallow(<App />);
+        el = mount(<App />);
         input = el.find('input');
     });
 
@@ -75,5 +75,13 @@ describe('Search input', () => {
         performSearch();
 
         expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should search when the search button is pressed', () => {
+        input.value = 'test';
+
+        el.find('button').simulate('click');
+
+        expect(spy).toHaveBeenCalled();
     });
 });

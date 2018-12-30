@@ -14,7 +14,10 @@ class App extends Component {
 
         this.lastQuery = '';
 
+        this.searchInput = React.createRef();
+
         this.search = this.search.bind(this);
+        this.searchBtnClick = this.searchBtnClick.bind(this);
     }
 
     search(e) {
@@ -36,6 +39,10 @@ class App extends Component {
         search(value).then(this.updateMovies.bind(this));
     }
 
+    searchBtnClick() {
+        this.performSearch(this.searchInput.current.value);
+    }
+
     updateMovies(data) {
         const movies = data
             .filter(x => x.release_date !== '')
@@ -51,11 +58,15 @@ class App extends Component {
             <div className="App">
                 <div className="search">
                     <label htmlFor="search">Search by movie title</label>
-                    <input
-                        id="search"
-                        onKeyDown={this.search}
-                        placeholder="Movie title..."
-                    />
+                    <div className="flex-container">
+                        <input
+                            id="search"
+                            onKeyDown={this.search}
+                            placeholder="Movie title..."
+                            ref={this.searchInput}
+                        />
+                        <button onClick={this.searchBtnClick}>Search</button>
+                    </div>
                 </div>
 
                 <div className="results">
