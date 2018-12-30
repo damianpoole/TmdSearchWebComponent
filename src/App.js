@@ -22,7 +22,7 @@ class App extends Component {
 
     search(e) {
         const value = e.target.value;
-        const canSearch = e.key === 'Enter' && value != this.lastQuery;
+        const canSearch = e.key === 'Enter' && value !== this.lastQuery;
 
         this.lastQuery = value;
 

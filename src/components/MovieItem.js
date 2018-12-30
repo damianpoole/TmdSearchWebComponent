@@ -34,6 +34,7 @@ class MovieItem extends Component {
         return (
             <div className="movieItem" onClick={this.showModal}>
                 <img
+                    alt={`${this.props.title} poster`}
                     src={`https://image.tmdb.org/t/p/w200${
                         this.props.imageUrl
                     }`}
@@ -46,6 +47,7 @@ class MovieItem extends Component {
                         </p>
                         {backgroundImage && (
                             <img
+                                alt={`${this.props.title} poster`}
                                 align="right"
                                 src={`https://image.tmdb.org/t/p/w400${backgroundImage}`}
                             />
