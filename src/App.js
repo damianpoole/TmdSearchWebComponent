@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import MovieItem from './components/MovieItem';
 import './App.scss';
 import { search } from './tmd';
+import LoadMask from './components/LoadMask';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            isLoading: false
         };
 
         this.lastQuery = '';
@@ -21,14 +23,22 @@ class App extends Component {
 
         this.lastQuery = value;
 
-        canSearch
-            ? search(value).then(this.updateMovies.bind(this))
-            : this.updateMovies([]);
+        if (canSearch) {
+            this.performSearch(value);
+        }
+    }
+
+    performSearch(value) {
+        this.setState({
+            isLoading: true
+        });
+
+        search(value).then(this.updateMovies.bind(this));
     }
 
     updateMovies(data) {
         this.setState((previousState, currentProps) => {
-            return { movies: data };
+            return { movies: data, isLoading: false };
         });
     }
 
@@ -52,6 +62,8 @@ class App extends Component {
                         />
                     ))}
                 </div>
+
+                <LoadMask visible={this.state.isLoading} />
             </div>
         );
     }
