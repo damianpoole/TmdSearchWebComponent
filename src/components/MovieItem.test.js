@@ -27,21 +27,13 @@ describe('Movie details', () => {
         );
     });
 
-    it('Should not initially render the details', () => {
-        const release = <p className="releaseDate">{RELEASEDATE}</p>;
-        const overview = <p className="overview">{OVERVIEW}</p>;
-
-        expect(el.contains(release)).toEqual(false);
-        expect(el.contains(overview)).toEqual(false);
+    it('Should not initially have the modal being visible', () => {
+        expect(el.find('Modal').props().show).toEqual(false);
     });
 
     it('Should show the details once the button is clicked', () => {
-        el.instance().toggleDetails();
+        el.instance().showModal();
 
-        const release = <p className="releaseDate">{RELEASEDATE}</p>;
-        const overview = <p className="overview">{OVERVIEW}</p>;
-
-        expect(el.contains(release)).toEqual(true);
-        expect(el.contains(overview)).toEqual(true);
+        expect(el.find('Modal').props().show).toEqual(true);
     });
 });
