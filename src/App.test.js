@@ -8,7 +8,7 @@ it('renders without crashing', () => {
 });
 
 describe('Search input', () => {
-    let el, spy;
+    let el, spy, input;
 
     beforeEach(() => {
         spy = jest.spyOn(tmd, 'search').mockImplementation(() => {
@@ -17,21 +17,28 @@ describe('Search input', () => {
             });
         });
         el = shallow(<App />);
+        input = el.find('input');
     });
 
     afterEach(() => {
         jest.clearAllMocks();
     });
 
+    const performSearch = () => {
+        input.simulate('keyDown', {
+            keyCode: 13,
+            which: 13,
+            key: 'Enter',
+            target: { value: 'test' }
+        });
+    };
+
     // TODO: Work out how to test the async nature better.
 
-    it('Should search only if value is longer than 2 character', () => {
-        el.instance().search({
-            keyCode: 65,
-            target: {
-                value: 'abc'
-            }
-        });
+    it('Should search when enter is pressed', () => {
+        input.value = 'test';
+
+        performSearch();
 
         expect(spy).toBeCalled();
 
@@ -40,66 +47,28 @@ describe('Search input', () => {
         }, 100);
     });
 
-    it('Should clear the search results if value is less than 3', done => {
-        el.instance().search({
-            keyCode: 65,
-            target: {
-                value: 'abc'
-            }
+    it('Should clear the search results if value is empty', () => {
+        el.instance().setState({
+            movies: [{ id: 1 }, { id: 2 }]
         });
+        expect(el.update().find('MovieItem').length).toEqual(2);
 
-        function reset() {
-            el.instance().search({
-                keyCode: 65,
-                target: {
-                    value: ''
-                }
-            });
-
-            setTimeout(function() {
-                expect(el.update().find('MovieItem').length).toEqual(0);
-                done();
-            });
-        }
+        input.value = '';
+        performSearch();
 
         setTimeout(function() {
-            expect(el.update().find('MovieItem').length).toEqual(2);
-            reset();
+            expect(el.update().find('MovieItem').length).toEqual(0);
         }, 100);
 
         expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it("Should not search again if the value hasn't changed", () => {
-        const instance = el.instance();
+        input.value = 'test';
 
-        instance.search({
-            keyCode: 65,
-            target: {
-                value: 'abc'
-            }
-        });
-
-        instance.search({
-            keyCode: 65,
-            target: {
-                value: 'abc'
-            }
-        });
+        performSearch();
+        performSearch();
 
         expect(spy).toHaveBeenCalledTimes(1);
-    });
-
-    it('Should ignore any keyboard press other than a-z', () => {
-        const input = el.find('input');
-        input.value = 'ab';
-
-        input.simulate('keyDown', {
-            keyCode: 37,
-            which: 37,
-            target: { value: 'abc' }
-        });
-
-        expect(spy).not.toBeCalled();
     });
 });

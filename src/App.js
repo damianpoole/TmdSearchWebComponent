@@ -17,12 +17,7 @@ class App extends Component {
 
     search(e) {
         const value = e.target.value;
-        const key = e.keyCode;
-        const canSearch =
-            key >= 48 &&
-            key <= 90 &&
-            value.length >= 3 &&
-            value != this.lastQuery;
+        const canSearch = e.key === 'Enter' && value != this.lastQuery;
 
         this.lastQuery = value;
 
