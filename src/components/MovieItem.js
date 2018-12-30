@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MovieItem.scss';
 
 class MovieItem extends Component {
     constructor(props) {
@@ -20,9 +21,11 @@ class MovieItem extends Component {
         const showDetails = this.state.showDetails;
 
         return (
-            <div className="movieItem">
+            <div className={showDetails ? 'movieItem active' : 'movieItem'}>
                 <h2>{this.props.title}</h2>
-                <button onClick={this.toggleDetails}>Toggle Details</button>
+                <button onClick={this.toggleDetails}>
+                    {showDetails ? 'Collapse' : 'Expand'}
+                </button>
                 {showDetails && (
                     <div className="details">
                         <p className="releaseDate">{this.props.releaseDate}</p>

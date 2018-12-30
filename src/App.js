@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MovieItem from './components/MovieItem';
-import './App.css';
+import './App.scss';
 import { search } from './tmd';
 
 class App extends Component {
@@ -41,7 +41,10 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="search">
-                    <input onKeyDown={this.search} />
+                    <input
+                        onKeyDown={this.search}
+                        placeholder="Search by movie title..."
+                    />
                 </div>
 
                 <div className="results">
